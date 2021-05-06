@@ -38,7 +38,6 @@ class Pendulumn {
     update(GRAVITY) {
         
         this.rotation += this.rotationSpeed;
-        console.log(typeof this.rotationSpeed)
         this.secondRotation += this.secondRotationSpeed;
         if(this.rotation > 360) this.rotation -= 360;
         if(this.secondRotation > 360) this.secondRotation -= 360;
@@ -94,34 +93,25 @@ class Pendulumn {
         this.calculateRotation(ctx);
 
         
-        ctx.lineWidth = 1;
-        let rgb = this.randomColor();
-        ctx.strokeStyle = 'rgb(' + rgb[0] +',' + rgb[1] +',' + rgb[2] +')';
-        ctx.strokeStyle ="#ff0000";
-        ctx.beginPath();
-        ctx.moveTo(this.paths.first[0][0], this.paths.first[0][1]);
+        ctx.lineWidth = 2;
 
-
+        console.log(this.paths.first.length);
         //Draw paths
-        if(this.paths.first.length > 10000) {
+        if(this.paths.first.length > 10_000) {
             this.paths.first.shift();
             this.paths.second.shift();
         }
-        for(let i = 1; i < this.paths.first.length; i++) {
-            
-            
-            ctx.lineTo(this.paths.first[i][0], this.paths.first[i][1]);
-        }
-        ctx.stroke();
         
-
+        ctx.strokeStyle = '#ff9900'
         ctx.beginPath();
         ctx.moveTo(this.paths.second[0][0], this.paths.second[0][1]);
         //Draw paths
         for(let i = 1; i < this.paths.second.length; i++) {
             ctx.lineTo(this.paths.second[i][0], this.paths.second[i][1]);
+            
         }
         ctx.stroke();
+        
     }
 }
 export default Pendulumn;
